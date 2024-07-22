@@ -11,8 +11,14 @@ var models = initModels(sequelize);
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
 
-  let usersCollection = await models.users.findAll({ })
-  let rolesCollection = await models.roles.findAll({ })
+  let usersCollection = await models.users.findAll({ 
+    include: {all:true, nested:true},
+    raw: true,
+    nested: true
+  })
+  let rolesCollection = await models.roles.findAll({ 
+   
+  })
   res.render('crud',{title: 'CRUD with users', usersArray: usersCollection, rolesArray: rolesCollection});
 
 });
