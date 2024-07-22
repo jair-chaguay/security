@@ -24,7 +24,9 @@ router.post('/',async(req, res)=>{
     let hash = crypto.createHmac('sha512',salt).update(password).digest("base64");
     let passwordHash = salt + "$"+ hash
 
-    let user = await models.users.create({name:name, password:passwordHash})
+    let user = 
+     await models.users.create({name:name, password:passwordHash})
+     await models.users_roles.create({users_iduser: user.iduser, roles_idrole: idrole })
 
     res.redirect('/users')
   }catch(error){
