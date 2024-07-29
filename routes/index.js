@@ -34,6 +34,15 @@ router.post('/login', async function (req, res, next) {
         let passwordHash = salt + "$" + hash
 
         if (passwordHash === user.password) {
+
+          const options={
+            expires: new Date(
+              Date.now() + (60 * 1000)
+            )
+          }
+
+          res.cookie("username", username, options)
+
           res.redirect('/users');
         } else {
           res.redirect('/');
