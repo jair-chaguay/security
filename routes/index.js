@@ -51,6 +51,7 @@ router.post('/login', async function (req, res, next) {
           req.session.username = username;
 
           req.session.role = user.users_roles.roles_idrole_role.name
+          console.log(user)
 
           res.redirect('/users');
         } else {
