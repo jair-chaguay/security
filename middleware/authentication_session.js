@@ -4,7 +4,7 @@
     if(req.session.loggedin) {
         return next()
     } else{
-        return res.redirect("/")
+        return res.redirect("/token")
     }
 }
 
